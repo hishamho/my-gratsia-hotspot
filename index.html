@@ -4,21 +4,35 @@
   <meta charset="UTF-8">
   <title id="title-tag">خدمة الإنترنت - المركب السياحي</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     /* إعدادات أساسية */
     * {
       box-sizing: border-box;
-    }
-    body {
       margin: 0;
       padding: 0;
-      font-family: "Tajawal", sans-serif; /* يمكنك اختيار خط مناسب */
-      font-size: 16px;  /* تكبير حجم الخط الأساسي */
-      background: linear-gradient(135deg, #4f81c7, #1b365d);
-      background-repeat: no-repeat;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      background: url('https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=2064') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       line-height: 1.5;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    body:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(25, 55, 109, 0.8), rgba(7, 26, 63, 0.9));
+      z-index: -1;
     }
 
     /* شريط التنقل */
@@ -28,12 +42,19 @@
       justify-content: space-between;
       align-items: center;
       padding: 0.7rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
+    
     nav .nav-title {
       color: #ffd700;
       font-weight: bold;
       font-size: 1.3rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
+    
     nav .lang-select {
       background: #fff;
       color: #333;
@@ -42,6 +63,7 @@
       padding: 0.3rem 0.6rem;
       cursor: pointer;
       border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     /* قسم تسجيل الدخول */
@@ -52,34 +74,45 @@
       border-radius: 8px;
       padding: 1.5rem;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
     .login-section h2 {
       margin-top: 0;
       color: #ffd700;
       font-size: 1.4rem;
       margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
+    
     .login-section p {
       margin: 0.5rem 0 1rem;
       font-size: 1rem;
     }
+    
     .login-form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
+    
     .login-form label {
       text-align: right;
       font-weight: bold;
       color: #fff;
       font-size: 1rem;
     }
+    
     .login-form input {
       padding: 0.8rem;
       border: none;
       border-radius: 4px;
       font-size: 1rem;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
     }
+    
     .login-form button {
       padding: 0.8rem;
       border: none;
@@ -89,16 +122,20 @@
       color: #333;
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
+    
     .login-form button:hover {
       background-color: #ffca2c;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
     /* أيقونات الخيارات */
     .feature-icons {
       max-width: 600px;
-      margin: 1rem auto;
+      margin: 1.5rem auto;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -106,12 +143,26 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 1rem;
       border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
     .icon-box {
       width: 90px;
       text-align: center;
       cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 6px;
     }
+    
+    .icon-box:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
     .icon-box img {
       width: 60px;
       height: 60px;
@@ -119,58 +170,100 @@
       margin-bottom: 0.3rem;
       border-radius: 50%;
       border: 2px solid #ffd700;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
     }
+    
     .icon-box p {
       margin: 0;
       color: #ffd700;
       font-weight: bold;
       font-size: 1rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
+    
     .icon-box:hover img {
       border-color: #fff;
+      transform: scale(1.1);
     }
 
     /* أقسام المحتوى */
     .content-section {
       max-width: 600px;
-      margin: 1rem auto;
+      margin: 1.5rem auto;
       display: none; /* مخفية افتراضيًا */
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      padding: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: fadeIn 0.5s ease;
     }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
     .content-section h2 {
       margin-top: 0;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       color: #ffd700;
       font-size: 1.4rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+      padding-bottom: 0.5rem;
     }
+    
     .content-section p {
       font-size: 1rem;
+      margin-bottom: 1rem;
     }
+    
     .grid-items {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
       margin-top: 1rem;
     }
+    
     .item-box {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 6px;
-      padding: 0.5rem;
+      padding: 0.8rem;
       text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
     }
+    
+    .item-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
     .item-box img {
-      max-width: 100%;
-      border: 1px solid #ccc;
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
       border-radius: 4px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
+    
+    .item-box:hover img {
+      transform: scale(1.05);
+    }
+    
     .item-box h3 {
       margin: 0.5rem 0;
       color: #ffd700;
       font-size: 1.1rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
+    
     .item-box p {
       margin: 0.3rem 0;
       font-size: 0.95rem;
@@ -182,28 +275,48 @@
       max-width: 450px;
       margin: 1.5rem auto;
       background: rgba(255, 255, 255, 0.1);
-      padding: 1rem;
+      padding: 1.5rem;
       border-radius: 8px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
     .contact-section h2 {
       color: #ffd700;
       margin-top: 0;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       font-size: 1.4rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+      padding-bottom: 0.5rem;
     }
+    
     .contact-section p {
       font-size: 1rem;
+      margin-bottom: 1rem;
     }
+    
     .contact-section ul {
       list-style: none;
       padding: 0;
-      margin: 0.5rem 0;
+      margin: 0.8rem 0;
     }
+    
     .contact-section li {
-      margin: 0.3rem 0;
+      margin: 0.5rem 0;
       color: #fff;
       font-size: 1rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-section li:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
 
     /* ذيل الصفحة */
@@ -211,30 +324,46 @@
       text-align: center;
       padding: 1rem;
       color: #eee;
-      margin-bottom: 2rem;
+      margin-top: 2rem;
       font-size: 0.95rem;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
     }
 
     /* استجابة للشاشات الصغيرة */
     @media (max-width: 600px) {
+      .login-section, .feature-icons, .content-section, .contact-section {
+        width: 90%;
+        padding: 1rem;
+      }
+      
       nav .nav-title {
         font-size: 1.1rem;
       }
+      
       .lang-select {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
+      
       .icon-box {
         width: 80px;
       }
+      
       .icon-box img {
         width: 50px;
         height: 50px;
       }
+      
       .icon-box p {
         font-size: 0.9rem;
       }
+      
       .grid-items {
         grid-template-columns: 1fr 1fr; 
+      }
+      
+      .item-box img {
+        height: 100px;
       }
     }
   </style>
@@ -244,7 +373,7 @@
   <!-- شريط التنقل -->
   <nav>
     <div class="nav-title" id="nav-title">المركب السياحي</div>
-    <select class="lang-select" onchange="setLanguage(this.value)">
+    <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
       <option value="ar">العربية</option>
       <option value="en">English</option>
       <option value="it">Italiano</option>
@@ -267,19 +396,19 @@
   <!-- أيقونات المعابد/الوجبات/الحفلات/الصور -->
   <div class="feature-icons">
     <div class="icon-box" onclick="showSection('templesSection')">
-      <img src="https://via.placeholder.com/60?text=T" alt="Temples Icon">
+      <img src="https://images.unsplash.com/photo-1608546043931-6c9678ea9feb?w=100&h=100&fit=crop" alt="Temples Icon">
       <p id="icon-temples">المعابد</p>
     </div>
     <div class="icon-box" onclick="showSection('mealsSection')">
-      <img src="https://via.placeholder.com/60?text=M" alt="Meals Icon">
+      <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&h=100&fit=crop" alt="Meals Icon">
       <p id="icon-meals">الوجبات</p>
     </div>
     <div class="icon-box" onclick="showSection('eventsSection')">
-      <img src="https://via.placeholder.com/60?text=E" alt="Events Icon">
+      <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=100&h=100&fit=crop" alt="Events Icon">
       <p id="icon-events">الحفلات</p>
     </div>
     <div class="icon-box" onclick="showSection('photosSection')">
-      <img src="https://via.placeholder.com/60?text=P" alt="Photos Icon">
+      <img src="https://images.unsplash.com/photo-1552353617-3bfd679b3bdd?w=100&h=100&fit=crop" alt="Photos Icon">
       <p id="icon-photos">الصور</p>
     </div>
   </div>
@@ -287,20 +416,20 @@
   <!-- قسم المعابد -->
   <section class="content-section" id="templesSection">
     <h2 id="temples-title">المعابد والرحلات</h2>
-    <p id="temples-desc">استكشف المعابد الفرعونية المذهلة.</p>
+    <p id="temples-desc">استكشف المعابد الفرعونية المذهلة واستمتع برحلات مميزة على ضفاف النيل.</p>
     <div class="grid-items">
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Karnak" alt="">
+        <img src="https://images.unsplash.com/photo-1560159906-97d8c4213447?w=300&h=200&fit=crop" alt="معبد الكرنك">
         <h3 id="temple1-name">معبد الكرنك</h3>
         <p id="temple1-time">موعد الوصول: 10 صباحًا</p>
       </div>
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Edfu" alt="">
+        <img src="https://images.unsplash.com/photo-1600111636899-1b4b9a9e347f?w=300&h=200&fit=crop" alt="معبد إدفو">
         <h3 id="temple2-name">معبد إدفو</h3>
         <p id="temple2-time">موعد الوصول: 2 ظهرًا</p>
       </div>
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Kom+Ombo" alt="">
+        <img src="https://images.unsplash.com/photo-1590438325828-3ac185ee3457?w=300&h=200&fit=crop" alt="معبد كوم أمبو">
         <h3 id="temple3-name">معبد كوم أمبو</h3>
         <p id="temple3-time">موعد الوصول: 5 مساءً</p>
       </div>
@@ -310,20 +439,20 @@
   <!-- قسم الوجبات -->
   <section class="content-section" id="mealsSection">
     <h2 id="meals-title">الوجبات ومواعيدها</h2>
-    <p id="meals-desc">استمتع بألذ الأطباق على متن المركب.</p>
+    <p id="meals-desc">استمتع بألذ الأطباق المصرية والعالمية على متن المركب السياحي.</p>
     <div class="grid-items">
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Breakfast" alt="">
+        <img src="https://images.unsplash.com/photo-1533089860892-a9b969df67a3?w=300&h=200&fit=crop" alt="الإفطار">
         <h3 id="menu1-title">الإفطار</h3>
         <p id="menu1-time">7 صباحًا - 9 صباحًا</p>
       </div>
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Lunch" alt="">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop" alt="الغداء">
         <h3 id="menu2-title">الغداء</h3>
         <p id="menu2-time">1 ظهرًا - 3 عصرًا</p>
       </div>
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Dinner" alt="">
+        <img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=300&h=200&fit=crop" alt="العشاء">
         <h3 id="menu3-title">العشاء</h3>
         <p id="menu3-time">8 مساءً - 10 مساءً</p>
       </div>
@@ -333,15 +462,15 @@
   <!-- قسم الحفلات -->
   <section class="content-section" id="eventsSection">
     <h2 id="events-title">الحفلات</h2>
-    <p id="events-desc">انضم إلى أروع الحفلات والفعاليات الليلية.</p>
+    <p id="events-desc">انضم إلى أروع الحفلات والفعاليات الليلية على متن المركب السياحي.</p>
     <div class="grid-items">
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Party+1" alt="">
+        <img src="https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?w=300&h=200&fit=crop" alt="حفلة شرقية">
         <h3 id="event1-name">حفلة شرقية</h3>
         <p id="event1-time">9 مساءً - 11 مساءً</p>
       </div>
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Party+2" alt="">
+        <img src="https://images.unsplash.com/photo-1504704911898-68304a7d2807?w=300&h=200&fit=crop" alt="ليلة رقص فلكلوري">
         <h3 id="event2-name">ليلة رقص فلكلوري</h3>
         <p id="event2-time">11 مساءً - 1 صباحًا</p>
       </div>
@@ -351,17 +480,17 @@
   <!-- قسم الصور -->
   <section class="content-section" id="photosSection">
     <h2 id="photos-title">الصور</h2>
-    <p id="photos-desc">أجمل اللحظات والذكريات على متن المركب.</p>
+    <p id="photos-desc">أجمل اللحظات والذكريات على متن المركب السياحي.</p>
     <div class="grid-items">
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Photo+1" alt="">
-        <h3 id="photo1-name">صورة 1</h3>
-        <p>وصف مختصر</p>
+        <img src="https://images.unsplash.com/photo-1548958921-c5c0fe1b1509?w=300&h=200&fit=crop" alt="صورة 1">
+        <h3 id="photo1-name">غروب النيل</h3>
+        <p>لحظات مميزة على النيل</p>
       </div>
       <div class="item-box">
-        <img src="https://via.placeholder.com/200x120?text=Photo+2" alt="">
-        <h3 id="photo2-name">صورة 2</h3>
-        <p>وصف مختصر</p>
+        <img src="https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=300&h=200&fit=crop" alt="صورة 2">
+        <h3 id="photo2-name">رحلة المراكب</h3>
+        <p>غروب الشمس على النيل</p>
       </div>
     </div>
   </section>
@@ -371,7 +500,7 @@
     <h2 id="contact-title">خدمة العملاء</h2>
     <p id="contact-desc">لأي استفسار أو طلب خاص، تواصل معنا:</p>
     <ul>
-      <li id="contact-phone">هاتف الاستقبال: 01000000000</li>
+      <li id="contact-phone">هاتف الاستقبال: 010000</li>
       <li id="contact-hotline">الخط الساخن: 119511</li>
       <li id="contact-email2">company@gratsiatours.com</li>
     </ul>
@@ -401,7 +530,7 @@
         "icon-photos": "الصور",
         // المعابد
         "temples-title": "المعابد والرحلات",
-        "temples-desc": "استكشف المعابد الفرعونية المذهلة.",
+        "temples-desc": "استكشف المعابد الفرعونية المذهلة واستمتع برحلات مميزة على ضفاف النيل.",
         "temple1-name": "معبد الكرنك",
         "temple1-time": "موعد الوصول: 10 صباحًا",
         "temple2-name": "معبد إدفو",
@@ -410,7 +539,7 @@
         "temple3-time": "موعد الوصول: 5 مساءً",
         // الوجبات
         "meals-title": "الوجبات ومواعيدها",
-        "meals-desc": "استمتع بألذ الأطباق على متن المركب.",
+        "meals-desc": "استمتع بألذ الأطباق المصرية والعالمية على متن المركب السياحي.",
         "menu1-title": "الإفطار",
         "menu1-time": "7 صباحًا - 9 صباحًا",
         "menu2-title": "الغداء",
@@ -419,20 +548,20 @@
         "menu3-time": "8 مساءً - 10 مساءً",
         // الحفلات
         "events-title": "الحفلات",
-        "events-desc": "انضم إلى أروع الحفلات والفعاليات الليلية.",
+        "events-desc": "انضم إلى أروع الحفلات والفعاليات الليلية على متن المركب السياحي.",
         "event1-name": "حفلة شرقية",
         "event1-time": "9 مساءً - 11 مساءً",
         "event2-name": "ليلة رقص فلكلوري",
         "event2-time": "11 مساءً - 1 صباحًا",
         // الصور
         "photos-title": "الصور",
-        "photos-desc": "أجمل اللحظات والذكريات على متن المركب.",
-        "photo1-name": "صورة 1",
-        "photo2-name": "صورة 2",
+        "photos-desc": "أجمل اللحظات والذكريات على متن المركب السياحي.",
+        "photo1-name": "غروب النيل",
+        "photo2-name": "رحلة المراكب",
         // التواصل
         "contact-title": "خدمة العملاء",
         "contact-desc": "لأي استفسار أو طلب خاص، تواصل معنا:",
-        "contact-phone": "هاتف الاستقبال: 01000000000",
+        "contact-phone": "هاتف الاستقبال: 010000",
         "contact-hotline": "الخط الساخن: 119511",
         "contact-email2": "company@gratsiatours.com",
         // Footer
@@ -453,7 +582,7 @@
         "icon-photos": "Photos",
         // Temples
         "temples-title": "Temples & Tours",
-        "temples-desc": "Explore the magnificent Pharaonic temples.",
+        "temples-desc": "Explore the magnificent Pharaonic temples and enjoy special trips along the Nile.",
         "temple1-name": "Karnak Temple",
         "temple1-time": "Arrival: 10 AM",
         "temple2-name": "Edfu Temple",
@@ -462,7 +591,7 @@
         "temple3-time": "Arrival: 5 PM",
         // Meals
         "meals-title": "Meals & Times",
-        "meals-desc": "Enjoy the most delicious dishes on board.",
+        "meals-desc": "Enjoy the most delicious Egyptian and international dishes on board.",
         "menu1-title": "Breakfast",
         "menu1-time": "7 AM - 9 AM",
         "menu2-title": "Lunch",
@@ -471,20 +600,20 @@
         "menu3-time": "8 PM - 10 PM",
         // Events
         "events-title": "Events",
-        "events-desc": "Join our fantastic night parties and shows.",
+        "events-desc": "Join our fantastic night parties and shows on the cruise.",
         "event1-name": "Oriental Party",
         "event1-time": "9 PM - 11 PM",
         "event2-name": "Folklore Dance Night",
         "event2-time": "11 PM - 1 AM",
         // Photos
         "photos-title": "Gallery",
-        "photos-desc": "Memorable moments on the cruise.",
-        "photo1-name": "Photo 1",
-        "photo2-name": "Photo 2",
+        "photos-desc": "Beautiful moments and memories on the Nile cruise.",
+        "photo1-name": "Nile Sunset",
+        "photo2-name": "Boat Trip",
         // Contact
         "contact-title": "Customer Service",
         "contact-desc": "For inquiries or special requests, contact us:",
-        "contact-phone": "Reception: 01000000000",
+        "contact-phone": "Reception: 010000",
         "contact-hotline": "Hotline: 119511",
         "contact-email2": "company@gratsiatours.com",
         // Footer
@@ -505,7 +634,7 @@
         "icon-photos": "Foto",
         // Temples
         "temples-title": "Templi & Tour",
-        "temples-desc": "Esplora gli incredibili templi faraonici.",
+        "temples-desc": "Esplora gli incredibili templi faraonici e goditi viaggi speciali lungo il Nilo.",
         "temple1-name": "Tempio di Karnak",
         "temple1-time": "Arrivo: 10:00",
         "temple2-name": "Tempio di Edfu",
@@ -514,7 +643,7 @@
         "temple3-time": "Arrivo: 17:00",
         // Meals
         "meals-title": "Pasti & Orari",
-        "meals-desc": "Goditi i piatti più deliziosi a bordo.",
+        "meals-desc": "Goditi i piatti più deliziosi a bordo della crociera.",
         "menu1-title": "Colazione",
         "menu1-time": "7:00 - 9:00",
         "menu2-title": "Pranzo",
@@ -523,60 +652,86 @@
         "menu3-time": "20:00 - 22:00",
         // Events
         "events-title": "Eventi",
-        "events-desc": "Unisciti alle nostre feste e spettacoli notturni.",
+        "events-desc": "Unisciti alle fantastiche feste notturne e spettacoli sulla crociera.",
         "event1-name": "Festa Orientale",
         "event1-time": "21:00 - 23:00",
-        "event2-name": "Serata Folkloristica",
-        "event2-time": "23:00 - 01:00",
+        "event2-name": "Notte di Danza Folkloristica",
+        "event2-time": "23:00 - 1:00",
         // Photos
-        "photos-title": "Foto",
-        "photos-desc": "Momenti indimenticabili sulla crociera.",
-        "photo1-name": "Foto 1",
-        "photo2-name": "Foto 2",
+        "photos-title": "Galleria",
+        "photos-desc": "Momenti e ricordi bellissimi sulla crociera sul Nilo.",
+        "photo1-name": "Tramonto sul Nilo",
+        "photo2-name": "Gita in Barca",
         // Contact
         "contact-title": "Servizio Clienti",
-        "contact-desc": "Per richieste o esigenze speciali, contattaci:",
-        "contact-phone": "Reception: 01000000000",
+        "contact-desc": "Per informazioni o richieste speciali, contattaci:",
+        "contact-phone": "Reception: 010000",
         "contact-hotline": "Linea diretta: 119511",
         "contact-email2": "company@gratsiatours.com",
         // Footer
-        "footer-info": "Gratsia Tours lascia un'impronta notevole nel settore turistico in Egitto."
+        "footer-info": "Gratsia Tours lascia un'impronta notevole nell'industria turistica dell'Egitto."
       }
     };
 
     // دالة تغيير اللغة
     function setLanguage(lang) {
-      if (!translations[lang]) lang = "ar";
+      // تأكد من وجود اللغة
+      if (!translations[lang]) {
+        lang = "ar";
+      }
+      
+      // الحصول على بيانات اللغة المختارة
       const langData = translations[lang];
       
+      // تحديث جميع النصوص
       for (let key in langData) {
         const element = document.getElementById(key);
         if (element) {
           element.textContent = langData[key];
         }
       }
-      // تغيير عنوان الصفحة
-      document.title = langData["title-tag"] || "Nile Cruise";
-      // ضبط اتجاه النص
-      if (lang === "ar") {
-        document.documentElement.setAttribute("dir", "rtl");
-      } else {
-        document.documentElement.setAttribute("dir", "ltr");
-      }
+      
+      // تحديث عنوان الصفحة
+      document.title = langData["title-tag"];
+      
+      // تحديث اتجاه الصفحة
+      document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
       document.documentElement.setAttribute("lang", lang);
+      
+      // تحديث القائمة المنسدلة
+      const langSelect = document.getElementById("langSelect");
+      langSelect.value = lang;
     }
 
-    // دالة لإظهار قسم معيّن وإخفاء الباقي
+    // دالة إظهار قسم معين
     function showSection(sectionId) {
-      const sections = ["templesSection","mealsSection","eventsSection","photosSection"];
-      sections.forEach(sec => {
-        document.getElementById(sec).style.display = (sec === sectionId) ? "block" : "none";
+      const sections = document.querySelectorAll('.content-section');
+      
+      // إخفاء جميع الأقسام أولاً
+      sections.forEach(section => {
+        section.style.display = 'none';
       });
+      
+      // إظهار القسم المطلوب
+      const selectedSection = document.getElementById(sectionId);
+      if (selectedSection) {
+        selectedSection.style.display = 'block';
+      }
     }
 
-    // لغة افتراضية عند التحميل
-    window.addEventListener("DOMContentLoaded", () => {
-      setLanguage("ar");
+    // تهيئة الصفحة عند التحميل
+    document.addEventListener('DOMContentLoaded', function() {
+      // تعيين اللغة الافتراضية
+      setLanguage('ar');
+      
+      // إضافة استجابة لنموذج تسجيل الدخول
+      const loginForm = document.querySelector('.login-form');
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('تم تسجيل الدخول بنجاح!');
+        });
+      }
     });
   </script>
 </body>
